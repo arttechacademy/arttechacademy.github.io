@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>اکادمی آرتیک | ArtTech Academy</title>
+
+    <meta name="description"
+          content="اکادمی آرتیک؛ آموزش تخصصی مهارت‌های کمپیوتری، طراحی گرافیک و مهارت‌های دیجیتال">
+
+    <style>
+
+        /* =========================================================
+           FONTS
+        ========================================================= */
+
+        @font-face {
+            font-family: "Modam";
+            src: url("./._Modam-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Bahij";
+            src: url("./Bahij TheSansArabic-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Bahij", Tahoma, Arial, sans-serif;
+            background: #06111f;
+            color: #ffffff;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+
+        /* =========================================================
+           GENERAL
+        ========================================================= */
+
+        :root {
+            --bg: #06111f;
+            --bg-light: #0a1a2d;
+            --card: #0c2035;
+            --card-hover: #102b45;
+            --cyan: #42caff;
+            --cyan-dark: #159dd3;
+            --white: #ffffff;
+            --text: #d9e7f2;
+            --muted: #91a7b9;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        .container {
+            width: min(1150px, 92%);
+            margin: auto;
+        }
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(30px, 4vw, 44px);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(6, 17, 31, 0.90);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .brand-name {
+            font-family: "Modam", Arial, sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            direction: ltr;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        nav a {
+            font-size: 15px;
+            color: var(--text);
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--cyan);
+        }
+
+        .menu-btn {
+            display: none;
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: calc(100vh - 78px);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(66, 202, 255, 0.12);
+            filter: blur(100px);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: rgba(21, 157, 211, 0.08);
+            filter: blur(100px);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -100px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 7px 18px;
+            border: 1px solid rgba(66, 202, 255, 0.35);
+            background: rgba(66, 202, 255, 0.08);
+            color: var(--cyan);
+            border-radius: 50px;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-family: "Bahij", Tahoma, sans-serif;
+            font-size: clamp(45px, 7vw, 82px);
+            line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 25px;
+        }
+
+        .gradient {
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #42caff
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 18px;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 0 28px;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--cyan);
+            color: #03101b;
+        }
+
+        .btn-primary:hover {
+            background: #75d8ff;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.18);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
+        .about {
+            background: var(--bg-light);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            font-size: 17px;
+            margin-bottom: 15px;
+        }
+
+        .about-box {
+            padding: 40px;
+            background: linear-gradient(
+                145deg,
+                rgba(66,202,255,0.12),
+                rgba(255,255,255,0.03)
+            );
+            border: 1px solid var(--border);
+            border-radius: 25px;
+        }
+
+        .about-box h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .about-box p {
+            color: var(--muted);
+        }
+
+
+        /* =========================================================
+           COURSES
+        ========================================================= */
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .course-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 30px;
+            transition: 0.35s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(66,202,255,0.08);
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
+        }
+
+        .course-card:hover {
+            transform: translateY(-7px);
+            background: var(--card-hover);
+            border-color: rgba(66,202,255,0.3);
+        }
+
+        .course-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            background: rgba(66,202,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cyan);
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .course-card h3 {
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           FEATURES
+        ========================================================= */
+
+        .features {
+            background: var(--bg-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 30px 20px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           CTA
+        ========================================================= */
+
+        .cta {
+            padding: 90px 0;
+        }
+
+        .cta-box {
+            text-align: center;
+            padding: 70px 30px;
+            border-radius: 30px;
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(66,202,255,0.15),
+                    rgba(255,255,255,0.02)
+                );
+            border: 1px solid rgba(66,202,255,0.15);
+        }
+
+        .cta-box h2 {
+            font-size: clamp(30px, 5vw, 48px);
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            color: var(--muted);
+            max-width: 650px;
+            margin: 0 auto 30px;
+        }
+
+
+        /* =========================================================
+           CONTACT
+        ========================================================= */
+
+        .contact {
+            background: var(--bg-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .contact-card {
+            padding: 35px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .contact-card h3 {
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .contact-card p {
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .whatsapp {
+            display: inline-flex;
+            margin-top: 15px;
+            padding: 12px 22px;
+            border-radius: 10px;
+            background: #1fbd65;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .whatsapp:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            font-family: "Modam", Arial, sans-serif;
+            direction: ltr;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .footer-text {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           ENGLISH TEXT
+        ========================================================= */
+
+        .english {
+            font-family: "Modam", Arial, sans-serif !important;
+            font-weight: 700;
+            direction: ltr;
+            display: inline-block;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .courses-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .header-inner {
+                min-height: 70px;
+            }
+
+            .logo {
+                width: 48px;
+                height: 48px;
+            }
+
+            .brand-name {
+                font-size: 16px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                right: 4%;
+                left: 4%;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                background: #0a1a2d;
+                border: 1px solid var(--border);
+                border-radius: 15px;
+                padding: 10px;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 12px 15px;
+                border-radius: 8px;
+            }
+
+            nav a:hover {
+                background: rgba(66,202,255,0.08);
+            }
+
+            .hero {
+                min-height: calc(100vh - 70px);
+            }
+
+            .hero h1 {
+                font-size: clamp(40px, 12vw, 62px);
+                letter-spacing: -1px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 65px 0;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header>
+
+        <div class="container header-inner">
+
+            <a href="#home" class="brand">
+
+                <div class="logo">
+                    <img src="logo.png" alt="ArtTech Academy Logo">
+                </div>
+
+                <span class="brand-name">
+                    ArtTech Academy / اکادمی آرتیک
+                </span>
+
+            </a>
+
+
+            <button class="menu-btn" id="menuBtn" aria-label="باز کردن منو">
+                ☰
+            </button>
+
+
+            <nav id="nav">
+
+                <a href="#home">صفحه اصلی</a>
+
+                <a href="#about">درباره ما</a>
+
+                <a href="#courses">دوره‌ها</a>
+
+                <a href="#features">مزیت‌ها</a>
+
+                <a href="#contact">ارتباط با ما</a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+                        آموزش حرفه‌ای، آینده حرفه‌ای
+                    </span>
+
+
+                    <h1>
+
+                        مهارت امروز،
+
+                        <br>
+
+                        <span class="gradient">
+                            آینده بهتر فردا.
+                        </span>
+
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        در اکادمی آرتیک، مهارت‌های کاربردی کمپیوتر،
+                        طراحی گرافیک و فناوری‌های دیجیتال را به‌صورت
+                        حرفه‌ای و عملی یاد بگیرید.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a href="#courses" class="btn btn-primary">
+                            مشاهده دوره‌ها
+                        </a>
+
+                        <a href="#contact" class="btn btn-outline">
+                            تماس با ما
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             ABOUT
+        ====================================================== -->
+
+        <section class="section about" id="about">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        درباره اکادمی آرتیک
+                    </h2>
+
+                    <p>
+                        جایی برای یادگیری، رشد و ساختن آینده
+                    </p>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="about-text">
+
+                        <h2>
+                            یادگیری واقعی، مهارت واقعی
+                        </h2>
+
+                        <p>
+                            هدف ما این است که آموزش‌های کاربردی و
+                            قابل استفاده را در اختیار علاقه‌مندان
+                            به تکنولوژی قرار دهیم.
+                        </p>
+
+                        <p>
+                            دوره‌های آموزشی ما با تمرکز بر تمرین،
+                            پروژه و مهارت‌های مورد نیاز بازار کار
+                            طراحی شده‌اند.
+                        </p>
+
+                    </div>
+
+
+                    <div class="about-box">
+
+                        <h3>
+                            <span class="english">
+                                ArtTech Academy
+                            </span>
+                        </h3>
+
+                        <p>
+                            با ما یک قدم جلوتر از تکنولوژی حرکت کنید
+                            و مهارت‌هایی را بیاموزید که مسیر آینده
+                            شما را بهتر می‌سازد.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             COURSES
+        ====================================================== -->
+
+        <section class="section" id="courses">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        دوره‌های آموزشی
+                    </h2>
+
+                    <p>
+                        مهارت مورد نیاز خود را انتخاب کنید
+                    </p>
+
+                </div>
+
+
+                <div class="courses-grid">
+
+
+                    <div class="course-card">
+
+                        <div class="course-icon">
+                            W
+                        </div>
+
+                        <h3>
+                            <span class="english">
+                                Microsoft Word
+                            </span>
+                        </h3>
+
+                        <p>
+                            آموزش حرفه‌ای ورد و مهارت‌های
+                            کاربردی برای تهیه اسناد و پروژه‌ها.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="course-card">
+
+                        <div class="course-icon">
+                            X
+                        </div>
+
+                        <h3>
+                            <span class="english">
+                                Microsoft Excel
+                            </span>
+                        </h3>
+
+                        <p>
+                            آموزش فرمول‌ها، توابع، جدول‌ها،
+                            گزارش‌گیری و تحلیل اطلاعات.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="course-card">
+
+                        <div class="course-icon">
+                            P
+                        </div>
+
+                        <h3>
+                            <span class="english">
+                                PowerPoint
+                            </span>
+                        </h3>
+
+                        <p>
+                            ساخت ارائه‌های حرفه‌ای و طراحی
+                            اسلایدهای جذاب و کاربردی.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="course-card">
+
+                        <div class="course-icon">
+                            ✦
+                        </div>
+
+                        <h3>
+                            طراحی گرافیک
+                        </h3>
+
+                        <p>
+                            یادگیری اصول طراحی و کار با ابزارهای
+                            حرفه‌ای گرافیک و تولید محتوا.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="course-card">
+
+                        <div class="course-icon">
+                            PC
+                        </div>
+
+                        <h3>
+                            مهارت‌های کمپیوتری
+                        </h3>
+
+                        <p>
+                            آموزش ویندوز، سخت‌افزار، نرم‌افزار
+                            و مهارت‌های ضروری کمپیوتر.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="course-card">
+
+                        <div class="course-icon">
+                            IT
+                        </div>
+
+                        <h3>
+                            مهارت‌های دیجیتال
+                        </h3>
+
+                        <p>
+                            آشنایی با تکنولوژی‌های روز و مهارت‌های
+                            ضروری دنیای دیجیتال.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FEATURES
+        ====================================================== -->
+
+        <section class="section features" id="features">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        چرا آرتیک؟
+                    </h2>
+
+                    <p>
+                        آموزش با تمرکز بر نتیجه
+                    </p>
+
+                </div>
+
+
+                <div class="features-grid">
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            🎯
+                        </div>
+
+                        <h3>
+                            آموزش کاربردی
+                        </h3>
+
+                        <p>
+                            تمرکز بر مهارت‌هایی که واقعاً
+                            در دنیای کار استفاده می‌شوند.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            💡
+                        </div>
+
+                        <h3>
+                            آموزش ساده
+                        </h3>
+
+                        <p>
+                            مطالب پیچیده را ساده و قابل فهم
+                            یاد می‌گیرید.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            🛠
+                        </div>
+
+                        <h3>
+                            تمرین و پروژه
+                        </h3>
+
+                        <p>
+                            یادگیری همراه با تمرین و پروژه‌های
+                            واقعی.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            🚀
+                        </div>
+
+                        <h3>
+                            رشد مهارت
+                        </h3>
+
+                        <p>
+                            قدم‌به‌قدم مهارت‌های خود را
+                            توسعه دهید.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CTA
+        ====================================================== -->
+
+        <section class="cta">
+
+            <div class="container">
+
+                <div class="cta-box">
+
+                    <h2>
+                        آینده خود را از امروز بسازید
+                    </h2>
+
+                    <p>
+                        یادگیری یک مهارت جدید می‌تواند شروع
+                        یک مسیر جدید در زندگی شما باشد.
+                    </p>
+
+                    <a href="#contact" class="btn btn-primary">
+                        شروع یادگیری
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+
+        <section class="section contact" id="contact">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        ارتباط با ما
+                    </h2>
+
+                    <p>
+                        برای ثبت‌نام و دریافت اطلاعات دوره‌ها
+                        با ما در تماس باشید.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-grid">
+
+
+                    <div class="contact-card">
+
+                        <h3>
+                            <span class="english">
+                                ArtTech Academy
+                            </span>
+                        </h3>
+
+                        <p>
+                            برای دریافت اطلاعات بیشتر درباره
+                            دوره‌ها و زمان ثبت‌نام با ما تماس بگیرید.
+                        </p>
+
+                        <p>
+                            شماره تماس:
+                            <span class="english">
+                                070 260 1027
+                            </span>
+                        </p>
+
+                        <a
+                            class="whatsapp"
+                            href="https://wa.me/93702601027"
+                            target="_blank"
+                        >
+                            ارتباط در واتساپ
+                        </a>
+
+                    </div>
+
+
+
+                    <div class="contact-card">
+
+                        <h3>
+                            آماده یادگیری هستید؟
+                        </h3>
+
+                        <p>
+                            دوره مناسب خود را انتخاب کنید و
+                            مسیر یادگیری خود را آغاز نمایید.
+                        </p>
+
+                        <a href="#courses" class="btn btn-outline">
+                            مشاهده دوره‌ها
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        <div class="container footer-inner">
+
+            <div class="footer-brand">
+                ArtTech Academy / اکادمی آرتیک
+            </div>
+
+            <div class="footer-text">
+                © 2026 تمامی حقوق محفوظ است.
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        const menuBtn = document.getElementById("menuBtn");
+        const nav = document.getElementById("nav");
+
+        menuBtn.addEventListener("click", function () {
+
+            nav.classList.toggle("active");
+
+        });
+
+
+        /* بستن منو بعد از کلیک روی لینک */
+
+        const navLinks = document.querySelectorAll("nav a");
+
+        navLinks.forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                nav.classList.remove("active");
+
+            });
+
+        });
+
+    </script>
+
+
+</body>
+</html>
