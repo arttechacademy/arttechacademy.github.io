@@ -922,6 +922,56 @@ footer{
 }
 
 /* ============================
+   NEWS IMAGE / MOBILE FIX
+============================ */
+.news-track{
+    align-items:flex-start;
+}
+
+.news-slide{
+    flex:0 0 100%;
+    min-width:100%;
+    width:100%;
+    overflow:hidden;
+}
+
+.news-slide img{
+    display:block;
+    width:100%;
+    max-width:100%;
+    height:auto !important;
+    min-height:1px;
+    object-fit:contain;
+    margin:0 auto;
+}
+
+@media(max-width:760px){
+    .news-slider{
+        width:100%;
+        overflow:hidden;
+    }
+
+    .news-track{
+        display:flex;
+        width:100%;
+    }
+
+    .news-slide{
+        flex:0 0 100%;
+        min-width:100%;
+        width:100%;
+    }
+
+    .news-slide img{
+        width:100%;
+        max-width:100%;
+        height:auto !important;
+        min-height:1px;
+        display:block;
+    }
+}
+
+/* ============================
    RESPONSIVE
 ============================ */
 
