@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>داشبورد آمار | اکادمی آرتیک</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#06111f;--card:rgba(12,31,50,.72);--line:rgba(255,255,255,.11);
+  --text:#eef8ff;--muted:#91a9bb;--cyan:#29d3ff;--green:#35e0a1;
+  --shadow:0 24px 70px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;color:var(--text);
+  font-family:Tahoma,"Segoe UI",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(41,211,255,.12),transparent 28%),
+    radial-gradient(circle at 90% 15%,rgba(53,224,161,.08),transparent 25%),
+    linear-gradient(135deg,#04101c,#071827 55%,#04101c);
+}
+button,input{font:inherit}
+.hidden{display:none!important}
+.wrap{width:min(1180px,calc(100% - 32px));margin:auto}
+.topbar{
+  padding:22px 0;position:sticky;top:0;z-index:10;
+  background:rgba(4,16,28,.78);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line)
+}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:48px;height:48px;border-radius:14px;object-fit:contain;
+  background:rgba(255,255,255,.06);padding:5px;border:1px solid var(--line)
+}
+.brand strong{display:block;font-size:18px}.brand span{color:var(--muted);font-size:12px}
+.btn{
+  border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text);
+  padding:10px 15px;border-radius:12px;cursor:pointer
+}
+.btn:hover{border-color:rgba(41,211,255,.5)}
+main{padding:34px 0 60px}
+h1{margin:0 0 8px;font-size:32px}.lead{color:var(--muted);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:22px;
+  box-shadow:var(--shadow);backdrop-filter:blur(20px)
+}
+.stat{padding:22px;position:relative;overflow:hidden}
+.stat:after{
+  content:"";position:absolute;width:100px;height:100px;border-radius:50%;
+  left:-35px;bottom:-45px;background:rgba(41,211,255,.07)
+}
+.stat-label{color:var(--muted);font-size:13px}.stat-value{font-size:32px;font-weight:800;margin-top:9px}
+.stat small{color:var(--muted)}
+.panels{display:grid;grid-template-columns:1.4fr .6fr;gap:16px;margin-top:16px}
+.panel{padding:22px}
+.panel h2{font-size:17px;margin:0 0 18px}
+.chart-box{height:330px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.list{display:grid;gap:10px}
+.row{
+  display:flex;justify-content:space-between;gap:12px;padding:12px 14px;
+  border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.025)
+}
+.row span:last-child{font-weight:700}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{color:var(--muted);font-weight:500}
+.status{margin-top:14px;color:var(--green);font-size:12px}
+.login{
+  min-height:100vh;display:grid;place-items:center;padding:20px
+}
+.login-card{width:min(430px,100%);padding:30px}
+.login-card h1{text-align:center;font-size:25px}
+.login-card p{text-align:center;color:var(--muted);line-height:1.8}
+.login-logo{display:block;width:78px;height:78px;margin:0 auto 18px;object-fit:contain}
+.field{margin-top:15px}.field label{display:block;color:var(--muted);font-size:13px;margin-bottom:7px}
+.field input{
+  width:100%;padding:13px 14px;border-radius:13px;border:1px solid var(--line);
+  background:rgba(0,0,0,.18);color:var(--text);outline:none
+}
+.field input:focus{border-color:rgba(41,211,255,.65)}
+.login-btn{width:100%;margin-top:20px;background:linear-gradient(135deg,#19bde8,#29d3ff);color:#00121c;border:0;font-weight:800}
+.error{color:#ff8f9c;font-size:13px;margin-top:12px;line-height:1.6}
+.loading{color:var(--muted);padding:20px 0}
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .panels,.two{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .wrap{width:min(100% - 20px,1180px)}
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  .stat{padding:16px}.stat-value{font-size:25px}
+  h1{font-size:25px}.topbar{padding:15px 0}
+  .brand span{display:none}
+}
+</style>
+</head>
+<body>
+
+<section id="loginView" class="login">
+  <div class="card login-card">
+    <img src="logo.png" class="login-logo" alt="اکادمی آرتیک">
+    <h1>ورود به داشبورد آمار</h1>
+    <p>داشبورد مدیریت بازدیدهای وب‌سایت اکادمی آرتیک</p>
+    <form id="loginForm">
+      <div class="field">
+        <label>ایمیل مدیر</label>
+        <input id="email" type="email" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label>رمز عبور</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn login-btn" type="submit">ورود به داشبورد</button>
+      <div id="loginError" class="error"></div>
+    </form>
+  </div>
+</section>
+
+<div id="dashboardView" class="hidden">
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">
+        <img src="logo.png" class="logo" alt="ArtTech">
+        <div><strong>اکادمی آرتیک</strong><span>داشبورد آمار وب‌سایت</span></div>
+      </div>
+      <button id="logoutBtn" class="btn">خروج</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>📊 آمار وب‌سایت</h1>
+    <p class="lead">نمایش آمار ثبت‌شده در Supabase — آخرین بروزرسانی: <span id="updated">...</span></p>
+
+    <div class="grid">
+      <div class="card stat"><div class="stat-label">👁️ کل بازدیدها</div><div id="total" class="stat-value">—</div></div>
+      <div class="card stat"><div class="stat-label">👤 بازدیدکنندگان یکتا</div><div id="unique" class="stat-value">—</div></div>
+      <div class="card stat"><div class="stat-label">📅 بازدید امروز</div><div id="today" class="stat-value">—</div></div>
+      <div class="card stat"><div class="stat-label">📆 بازدید ۷ روز اخیر</div><div id="week" class="stat-value">—</div></div>
+    </div>
+
+    <div class="panels">
+      <section class="card panel">
+        <h2>📈 بازدید روزانه</h2>
+        <div class="chart-box"><canvas id="dailyChart"></canvas></div>
+      </section>
+      <section class="card panel">
+        <h2>📱 دستگاه‌ها</h2>
+        <div id="devices" class="list"><div class="loading">در حال دریافت...</div></div>
+      </section>
+    </div>
+
+    <div class="two">
+      <section class="card panel">
+        <h2>🌐 مرورگرها</h2>
+        <div id="browsers" class="list"><div class="loading">در حال دریافت...</div></div>
+      </section>
+      <section class="card panel">
+        <h2>📄 صفحات پربازدید</h2>
+        <div id="pages" class="list"><div class="loading">در حال دریافت...</div></div>
+      </section>
+    </div>
+
+    <section class="card panel" style="margin-top:16px">
+      <h2>🕐 آخرین بازدیدها</h2>
+      <div id="recent" class="table-wrap"><div class="loading">در حال دریافت...</div></div>
+      <div id="status" class="status"></div>
+    </section>
+  </main>
+</div>
+
+<script>
+const SUPABASE_URL = "https://uunddbcsiiwwygrjztpz.supabase.co";
+const SUPABASE_KEY = "sb_publishable_0Gi1xF7kJNQ4GWLrKCXgLQ_sdfqjrwV";
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let dailyChart = null;
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+}[c]));
+
+function showDashboard(){
+  $("loginView").classList.add("hidden");
+  $("dashboardView").classList.remove("hidden");
+  loadStats();
+}
+function showLogin(){
+  $("dashboardView").classList.add("hidden");
+  $("loginView").classList.remove("hidden");
+}
+
+$("loginForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  $("loginError").textContent = "در حال ورود...";
+  const {error} = await client.auth.signInWithPassword({
+    email:$("email").value.trim(), password:$("password").value
+  });
+  if(error){ $("loginError").textContent = "ورود ناموفق بود: " + error.message; return; }
+  $("loginError").textContent = "";
+  showDashboard();
+});
+
+$("logoutBtn").addEventListener("click", async ()=>{
+  await client.auth.signOut();
+  showLogin();
+});
+
+function countValues(rows,key){
+  const map = {};
+  rows.forEach(r=>{
+    const v = r[key] || "نامشخص";
+    map[v] = (map[v] || 0) + 1;
+  });
+  return Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,8);
+}
+function renderList(id,items){
+  $(id).innerHTML = items.length
+    ? items.map(([name,count])=>`<div class="row"><span>${esc(name)}</span><span>${count}</span></div>`).join("")
+    : '<div class="loading">هنوز داده‌ای وجود ندارد.</div>';
+}
+function startOfToday(){
+  const d = new Date(); d.setHours(0,0,0,0); return d;
+}
+
+async function loadStats(){
+  $("status").textContent = "در حال دریافت آمار...";
+  const {data,error} = await client
+    .from("visits")
+    .select("id,visitor_id,page,device,browser,country,referrer,visited_at")
+    .order("visited_at",{ascending:false})
+    .limit(10000);
+
+  if(error){
+    $("status").textContent = "خطا در دریافت آمار: " + error.message;
+    return;
+  }
+
+  const rows = data || [];
+  const now = new Date();
+  const todayStart = startOfToday();
+  const weekStart = new Date(todayStart); weekStart.setDate(weekStart.getDate()-6);
+
+  $("total").textContent = rows.length;
+  $("unique").textContent = new Set(rows.map(r=>r.visitor_id).filter(Boolean)).size;
+  $("today").textContent = rows.filter(r=>new Date(r.visited_at)>=todayStart).length;
+  $("week").textContent = rows.filter(r=>new Date(r.visited_at)>=weekStart).length;
+  $("updated").textContent = now.toLocaleTimeString("fa-AF",{hour:"2-digit",minute:"2-digit"});
+
+  renderList("devices",countValues(rows,"device"));
+  renderList("browsers",countValues(rows,"browser"));
+  renderList("pages",countValues(rows,"page"));
+
+  const days = [];
+  for(let i=6;i>=0;i--){
+    const d = new Date(todayStart); d.setDate(d.getDate()-i);
+    const key = d.toISOString().slice(0,10);
+    const count = rows.filter(r=>new Date(r.visited_at).toISOString().slice(0,10)===key).length;
+    days.push({key,label:d.toLocaleDateString("fa-AF",{weekday:"short",month:"short",day:"numeric"}),count});
+  }
+
+  if(dailyChart) dailyChart.destroy();
+  dailyChart = new Chart($("dailyChart"),{
+    type:"line",
+    data:{
+      labels:days.map(x=>x.label),
+      datasets:[{
+        label:"بازدید",
+        data:days.map(x=>x.count),
+        borderWidth:3,
+        tension:.35,
+        fill:false
+      }]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:"#eef8ff"}}},
+      scales:{
+        x:{ticks:{color:"#91a9bb"},grid:{color:"rgba(255,255,255,.05)"}},
+        y:{beginAtZero:true,ticks:{color:"#91a9bb",precision:0},grid:{color:"rgba(255,255,255,.05)"}}
+      }
+    }
+  });
+
+  $("recent").innerHTML = rows.slice(0,20).length ? `
+    <table>
+      <thead><tr><th>زمان</th><th>صفحه</th><th>دستگاه</th><th>مرورگر</th><th>کشور</th></tr></thead>
+      <tbody>
+        ${rows.slice(0,20).map(r=>`
+          <tr>
+            <td>${esc(new Date(r.visited_at).toLocaleString("fa-AF"))}</td>
+            <td>${esc(r.page || "/")}</td>
+            <td>${esc(r.device || "نامشخص")}</td>
+            <td>${esc(r.browser || "نامشخص")}</td>
+            <td>${esc(r.country || "نامشخص")}</td>
+          </tr>`).join("")}
+      </tbody>
+    </table>` : '<div class="loading">هنوز بازدیدی ثبت نشده است.</div>';
+
+  $("status").textContent = `✓ ${rows.length.toLocaleString("fa-AF")} رکورد دریافت شد`;
+}
+
+(async()=>{
+  const {data:{session}} = await client.auth.getSession();
+  if(session) showDashboard(); else showLogin();
+})();
+</script>
+</body>
+</html>
