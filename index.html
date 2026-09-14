@@ -1121,7 +1121,245 @@ footer{
         font-size:21px;
     }
 }
+
+/* ============================
+   ARTTECH PRO GLASS UI
+============================ */
+:root{
+ --glass:rgba(11,33,54,.52);
+ --glass-strong:rgba(8,27,45,.72);
+ --glass-border:rgba(255,255,255,.13);
+ --glow:0 0 0 1px rgba(37,207,255,.05),0 24px 70px rgba(0,0,0,.28);
+}
+body{
+ background:
+ radial-gradient(circle at 15% 10%,rgba(37,207,255,.13),transparent 28%),
+ radial-gradient(circle at 85% 35%,rgba(70,120,255,.10),transparent 30%),
+ radial-gradient(circle at 50% 100%,rgba(37,207,255,.06),transparent 35%),
+ var(--bg);
+}
+body::after{
+ content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+ background:linear-gradient(120deg,transparent 0%,rgba(37,207,255,.025) 50%,transparent 100%);
+}
+body::before{
+ background-image:url("/pattern.png");
+ opacity:.14;
+ right:-40px;
+ filter:drop-shadow(0 0 25px rgba(37,207,255,.12));
+}
+header{
+ background:rgba(5,16,29,.62);
+ border-bottom:1px solid rgba(255,255,255,.12);
+ backdrop-filter:blur(22px) saturate(150%);
+ -webkit-backdrop-filter:blur(22px) saturate(150%);
+ box-shadow:0 10px 35px rgba(0,0,0,.16);
+}
+.brand{font-size:18px;letter-spacing:.1px}
+.logo img{filter:drop-shadow(0 0 10px rgba(37,207,255,.22));}
+.nav-links a{
+ border:1px solid transparent;
+ transition:all .25s ease;
+}
+.nav-links a:hover{
+ transform:translateY(-1px);
+ border-color:rgba(37,207,255,.16);
+ background:rgba(37,207,255,.09);
+ box-shadow:0 8px 25px rgba(37,207,255,.07);
+}
+.news-section{
+ background:linear-gradient(180deg,rgba(7,21,34,.72),rgba(6,17,31,.35));
+}
+.news-slider{
+ border:1px solid var(--glass-border);
+ background:rgba(8,25,43,.55);
+ box-shadow:var(--glow);
+ backdrop-filter:blur(16px);
+ -webkit-backdrop-filter:blur(16px);
+}
+.news-heading h1,.section-title h2,.hero h1{
+ text-shadow:0 4px 30px rgba(0,0,0,.25);
+}
+.hero{min-height:650px}
+.hero-content{max-width:850px}
+.hero-tag{
+ background:rgba(37,207,255,.075);
+ border-color:rgba(37,207,255,.30);
+ box-shadow:0 10px 35px rgba(37,207,255,.06);
+ backdrop-filter:blur(12px);
+}
+.hero h1 span{
+ text-shadow:0 0 30px rgba(37,207,255,.16);
+}
+.btn{
+ border-radius:15px;
+ backdrop-filter:blur(12px);
+ -webkit-backdrop-filter:blur(12px);
+ box-shadow:0 10px 28px rgba(0,0,0,.12);
+}
+.btn-primary{
+ background:linear-gradient(135deg,#25cfff,#5fe0ff);
+ box-shadow:0 12px 35px rgba(37,207,255,.18);
+}
+.btn-primary:hover{
+ transform:translateY(-3px);
+ box-shadow:0 18px 45px rgba(37,207,255,.24);
+}
+.btn-outline{
+ background:rgba(255,255,255,.045);
+ border-color:rgba(255,255,255,.13);
+}
+.about-text,.info-box,.course-card,.advantage,.contact-card,.free-box,.cta-box{
+ background:linear-gradient(145deg,rgba(14,39,62,.58),rgba(7,22,38,.48));
+ border:1px solid var(--glass-border);
+ box-shadow:var(--glow);
+ backdrop-filter:blur(18px) saturate(135%);
+ -webkit-backdrop-filter:blur(18px) saturate(135%);
+}
+.about-text:hover,.info-box:hover,.course-card:hover,.advantage:hover,.contact-card:hover{
+ border-color:rgba(37,207,255,.24);
+ box-shadow:0 22px 60px rgba(0,0,0,.30),0 0 30px rgba(37,207,255,.035);
+}
+.about-text{position:relative;overflow:hidden}
+.about-text::before,.free-box::before,.cta-box::before{
+ content:"";position:absolute;inset:-1px;pointer-events:none;
+ background:linear-gradient(120deg,rgba(255,255,255,.10),transparent 25%,transparent 70%,rgba(37,207,255,.06));
+ opacity:.65;
+}
+.course-card,.advantage,.info-box{transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
+.course-card:hover,.advantage:hover,.info-box:hover{transform:translateY(-6px)}
+.course-icon,.advantage-icon{
+ width:52px;height:52px;display:grid;place-items:center;
+ border-radius:15px;background:rgba(37,207,255,.075);
+ border:1px solid rgba(37,207,255,.12);
+ margin-bottom:12px;
+}
+.category-title::before{box-shadow:0 0 18px rgba(37,207,255,.35)}
+.advantages{
+ background:rgba(8,25,42,.30);
+ backdrop-filter:blur(5px);
+}
+.free-box{position:relative;overflow:hidden}
+.free-icon{filter:drop-shadow(0 0 15px rgba(37,207,255,.15))}
+.cta-box{position:relative;overflow:hidden}
+.contact-item{transition:.2s ease}
+.contact-item:hover{transform:translateX(-4px)}
+.contact-item .icon{
+ border:1px solid rgba(37,207,255,.12);
+ box-shadow:0 8px 25px rgba(37,207,255,.06);
+}
+.social-btn{
+ background:rgba(255,255,255,.045);
+ border-color:rgba(255,255,255,.12);
+ backdrop-filter:blur(10px);
+ transition:.25s ease;
+}
+.social-btn:hover{
+ transform:translateY(-3px);
+ border-color:rgba(37,207,255,.30);
+ box-shadow:0 12px 30px rgba(0,0,0,.18);
+}
+footer{background:rgba(3,12,23,.72);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
+.discount-overlay{background:rgba(1,7,14,.68);backdrop-filter:blur(14px) saturate(130%);-webkit-backdrop-filter:blur(14px) saturate(130%)}
+.discount-popup{
+ background:linear-gradient(145deg,rgba(14,47,72,.72),rgba(4,18,31,.78));
+ border-color:rgba(37,207,255,.38);
+ box-shadow:0 30px 100px rgba(0,0,0,.58),0 0 50px rgba(37,207,255,.08);
+ backdrop-filter:blur(24px) saturate(150%);
+ -webkit-backdrop-filter:blur(24px) saturate(150%);
+}
+.count-box{background:rgba(255,255,255,.055);backdrop-filter:blur(10px)}
+.menu-btn{background:rgba(255,255,255,.045);backdrop-filter:blur(10px)}
+@media(max-width:760px){
+ header{background:rgba(5,16,29,.78)}
+ .nav-links{background:rgba(8,26,43,.82);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-color:rgba(255,255,255,.13)}
+ .hero{min-height:560px}
+ body::before{right:-180px;opacity:.10;width:500px}
+}
 </style>
+
+<style id="arttech-professional-redesign">
+/* ===== ARTTECH PROFESSIONAL 2026 REDESIGN ===== */
+:root{
+ --bg:#030b16;--bg2:#071525;--panel:rgba(9,24,42,.62);--panel2:rgba(12,31,52,.78);
+ --cyan:#29d3ff;--cyan2:#6be7ff;--white:#f7fbff;--text:#cfe0eb;--muted:#829bad;
+ --border:rgba(255,255,255,.11);--border2:rgba(41,211,255,.22);--radius:24px;
+ --shadow:0 24px 70px rgba(0,0,0,.35);--soft:0 0 50px rgba(41,211,255,.08);
+}
+html{scroll-padding-top:88px}
+body{background:
+ radial-gradient(900px 500px at 85% 0%,rgba(41,211,255,.11),transparent 60%),
+ radial-gradient(700px 500px at 0% 35%,rgba(77,102,255,.08),transparent 60%),
+ linear-gradient(180deg,#030b16,#061321 48%,#030b16);color:var(--text)}
+body::before{right:-80px;top:90px;width:600px;height:760px;opacity:.16;filter:drop-shadow(0 0 30px rgba(41,211,255,.13));}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.018) 50%,transparent 80%);}
+header{background:rgba(3,11,22,.66)!important;border-bottom:1px solid rgba(255,255,255,.10)!important;backdrop-filter:blur(24px) saturate(160%)!important;-webkit-backdrop-filter:blur(24px) saturate(160%)!important;}
+.header-inner{min-height:82px!important}
+.brand{font-size:17px!important}
+.logo{width:48px!important;height:48px!important;padding:4px;border-radius:15px;background:rgba(41,211,255,.06);border:1px solid rgba(41,211,255,.18);box-shadow:0 0 25px rgba(41,211,255,.08)}
+.logo img{width:40px!important;height:40px!important}
+.nav-links{gap:4px!important}
+.nav-links a{padding:10px 13px!important;border:1px solid transparent;border-radius:12px!important}
+.nav-links a:hover{background:rgba(41,211,255,.07)!important;border-color:rgba(41,211,255,.15);box-shadow:0 8px 24px rgba(0,0,0,.14)}
+section{padding:105px 0!important}
+.section-title{margin-bottom:52px!important}
+.section-title .eyebrow{letter-spacing:.2px;background:rgba(41,211,255,.06);border:1px solid rgba(41,211,255,.16);padding:6px 14px;border-radius:999px}
+.section-title h2{font-size:clamp(30px,4vw,46px)!important;letter-spacing:-.7px}
+.section-title p{font-size:15px}
+/* news */
+.news-section{padding:30px 0 32px!important;background:transparent!important}
+.news-heading{margin-bottom:18px!important}
+.news-heading h1{font-size:clamp(22px,3vw,30px)!important}
+.news-slider{border-radius:28px!important;background:rgba(7,20,34,.58)!important;border:1px solid rgba(255,255,255,.12)!important;box-shadow:var(--shadow),var(--soft)!important;backdrop-filter:blur(14px)!important}
+.news-slide{background:linear-gradient(145deg,#091b2d,#06111f)!important}
+.news-slide img{max-height:650px!important}
+.news-arrow{width:48px!important;height:48px!important;background:rgba(3,11,22,.62)!important;border-color:rgba(255,255,255,.18)!important;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.news-dots{bottom:15px!important;background:rgba(3,11,22,.62)!important;border:1px solid rgba(255,255,255,.08)}
+/* hero completely changes the visual hierarchy */
+.hero{min-height:700px!important;padding:92px 0 110px!important;display:flex!important;align-items:center!important}
+.hero .container{width:min(1240px,92%)}
+.hero-content{max-width:none!important;display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+.hero-copy{max-width:720px}
+.hero-tag{padding:9px 15px!important;background:rgba(41,211,255,.055)!important;border:1px solid rgba(41,211,255,.25)!important;box-shadow:0 0 35px rgba(41,211,255,.06)}
+.hero h1{font-size:clamp(44px,6.5vw,82px)!important;line-height:1.14!important;letter-spacing:-2px!important;margin-bottom:24px!important}
+.hero h1 span{background:linear-gradient(90deg,var(--cyan),#a4f4ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:18px!important;line-height:2!important;color:#9db3c2!important;max-width:680px!important}
+.hero-actions{gap:14px!important}
+.btn{min-height:52px!important;padding:12px 23px!important;border-radius:15px!important}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--cyan2))!important;box-shadow:0 16px 38px rgba(41,211,255,.16)!important}
+.btn-outline{background:rgba(255,255,255,.035)!important;border-color:rgba(255,255,255,.14)!important;backdrop-filter:blur(12px)}
+.hero-visual{position:relative;min-height:440px;display:flex;align-items:center;justify-content:center}
+.hero-orbit{position:absolute;width:390px;height:390px;border:1px solid rgba(41,211,255,.12);border-radius:50%;box-shadow:0 0 80px rgba(41,211,255,.07);animation:artOrbit 16s linear infinite}
+.hero-orbit:before,.hero-orbit:after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 20px var(--cyan)}
+.hero-orbit:before{top:28px;right:65px}.hero-orbit:after{bottom:70px;left:35px}
+.hero-glass{position:relative;width:min(430px,100%);padding:30px;border-radius:30px;background:linear-gradient(145deg,rgba(18,48,76,.72),rgba(5,18,32,.70));border:1px solid rgba(255,255,255,.15);box-shadow:0 35px 90px rgba(0,0,0,.42),0 0 60px rgba(41,211,255,.10);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);z-index:2}
+.hero-glass:before{content:"";position:absolute;inset:1px;border-radius:29px;background:linear-gradient(130deg,rgba(255,255,255,.13),transparent 32%,transparent 70%,rgba(41,211,255,.08));pointer-events:none}
+.hero-logo-big{width:92px;height:92px;margin:0 auto 20px;border-radius:25px;padding:8px;background:rgba(255,255,255,.05);border:1px solid rgba(41,211,255,.22);box-shadow:0 0 35px rgba(41,211,255,.11)}
+.hero-logo-big img{width:100%;height:100%;object-fit:contain}
+.hero-glass h3{text-align:center;color:var(--white);font-size:25px;margin-bottom:5px}.hero-glass>p{text-align:center!important;font-size:13px!important;margin:0 auto 22px!important;color:var(--muted)!important}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.hero-stat{padding:15px 8px;text-align:center;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09)}.hero-stat strong{display:block;color:var(--cyan);font-size:24px}.hero-stat span{font-size:11px;color:var(--muted)}
+@keyframes artOrbit{to{transform:rotate(360deg)}}
+/* all cards */
+.about-text,.info-box,.course-card,.advantage,.contact-card,.free-box,.cta-box{background:linear-gradient(145deg,rgba(14,37,60,.64),rgba(5,18,32,.55))!important;border:1px solid rgba(255,255,255,.11)!important;box-shadow:var(--shadow)!important;backdrop-filter:blur(18px) saturate(135%);-webkit-backdrop-filter:blur(18px) saturate(135%)}
+.about-text{padding:40px!important;border-radius:28px!important;position:relative;overflow:hidden}.about-text:after{content:"01";position:absolute;left:24px;bottom:-20px;font-size:110px;font-weight:800;color:rgba(41,211,255,.035)}
+.about-panel{gap:15px!important}.info-box{border-radius:22px!important;min-height:165px!important;transition:.3s}.info-box:hover{transform:translateY(-7px);border-color:var(--border2)!important;box-shadow:var(--shadow),var(--soft)!important}
+.course-category{margin-bottom:65px!important}.category-title{font-size:25px!important;margin-bottom:22px!important}.category-title:before{height:32px!important;width:6px!important;box-shadow:0 0 18px rgba(41,211,255,.35)}
+.course-grid{grid-template-columns:repeat(4,1fr)!important;gap:18px!important}.course-card{min-height:190px!important;padding:25px!important;border-radius:22px!important;position:relative;overflow:hidden}.course-card:before{content:"";position:absolute;width:120px;height:120px;top:-65px;left:-65px;border-radius:50%;background:rgba(41,211,255,.08);filter:blur(2px)}.course-card:hover{transform:translateY(-9px)!important;border-color:rgba(41,211,255,.28)!important;box-shadow:0 28px 65px rgba(0,0,0,.38),0 0 35px rgba(41,211,255,.06)!important}.course-icon,.advantage-icon{width:58px!important;height:58px!important;display:grid!important;place-items:center!important;border-radius:18px!important;background:rgba(41,211,255,.07)!important;border:1px solid rgba(41,211,255,.14)!important;font-size:27px!important;box-shadow:inset 0 0 20px rgba(41,211,255,.035)}.course-card h4{font-size:16px!important;margin-top:14px}.course-card p{font-size:12px!important;line-height:1.8}
+.advantages{background:linear-gradient(180deg,rgba(8,24,41,.40),rgba(4,14,25,.55))!important;border-top:1px solid rgba(255,255,255,.08)!important;border-bottom:1px solid rgba(255,255,255,.08)!important}.advantage-grid{gap:18px!important}.advantage{border-radius:23px!important;min-height:200px;transition:.3s}.advantage:hover{transform:translateY(-8px);border-color:var(--border2)!important}
+.free-box{border-radius:30px!important;padding:55px 30px!important;position:relative;overflow:hidden}.free-box:after{content:"";position:absolute;width:300px;height:300px;left:-150px;bottom:-190px;border-radius:50%;background:rgba(41,211,255,.08);filter:blur(20px)}
+.cta-box{border-radius:30px!important;padding:65px 25px!important;background:linear-gradient(135deg,rgba(14,54,79,.72),rgba(7,25,43,.62))!important;position:relative;overflow:hidden}.cta-box:before{content:"";position:absolute;inset:auto 15% -100px 15%;height:180px;background:rgba(41,211,255,.10);filter:blur(55px);border-radius:50%}
+.contact-grid{gap:22px!important}.contact-card{border-radius:24px!important;padding:32px!important}.contact-item{padding:15px 0!important}.contact-item .icon{width:44px!important;height:44px!important;border-radius:14px!important;background:rgba(41,211,255,.07)!important;border:1px solid rgba(41,211,255,.14)}.social-btn{border-radius:13px!important;background:rgba(255,255,255,.035)!important;backdrop-filter:blur(10px)}
+footer{background:rgba(2,8,15,.78)!important;backdrop-filter:blur(18px)!important;border-top:1px solid rgba(255,255,255,.09)!important}
+.discount-overlay{background:rgba(1,6,12,.72)!important;backdrop-filter:blur(18px)!important}.discount-popup{border-radius:32px!important;background:linear-gradient(145deg,rgba(15,49,76,.78),rgba(4,17,30,.82))!important;box-shadow:0 40px 110px rgba(0,0,0,.62),0 0 70px rgba(41,211,255,.10)!important;backdrop-filter:blur(28px)!important}
+/* floating contact */
+.arttech-float{position:fixed;right:22px;bottom:22px;z-index:5000;width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,#19cfa4,#0b9d7d);color:white;font-size:25px;box-shadow:0 15px 40px rgba(0,0,0,.35),0 0 25px rgba(25,207,164,.16);border:1px solid rgba(255,255,255,.16);transition:.25s}.arttech-float:hover{transform:translateY(-5px) scale(1.03)}
+/* scroll reveal */
+.reveal-ready{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}.reveal-ready.revealed{opacity:1;transform:none}
+@media(max-width:1050px){.hero-content{grid-template-columns:1fr;gap:45px}.hero-copy{text-align:center;margin:auto}.hero p{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-visual{min-height:400px}.course-grid{grid-template-columns:repeat(2,1fr)!important}}
+@media(max-width:760px){section{padding:72px 0!important}.header-inner{min-height:70px!important}.nav-links{background:rgba(5,18,31,.88)!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:18px!important;padding:10px!important;backdrop-filter:blur(24px)!important}.hero{min-height:auto!important;padding:72px 0 80px!important}.hero h1{font-size:clamp(40px,12vw,58px)!important;letter-spacing:-1.2px!important}.hero p{font-size:15px!important}.hero-visual{min-height:350px}.hero-orbit{width:300px;height:300px}.hero-glass{padding:23px;border-radius:25px}.hero-logo-big{width:76px;height:76px}.hero-stats{gap:7px}.hero-stat{padding:11px 5px}.hero-stat strong{font-size:20px}.course-grid{grid-template-columns:1fr!important}.about-grid,.contact-grid{grid-template-columns:1fr!important}.about-text{padding:27px!important}.info-box{min-height:135px!important}.advantage-grid{grid-template-columns:1fr!important}.news-arrow{width:40px!important;height:40px!important}.arttech-float{right:15px;bottom:15px;width:54px;height:54px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+
 </head>
 
 <body>
@@ -1413,46 +1651,32 @@ footer{
 ============================ -->
 
 <section class="hero" id="home">
-
-    <div class="container">
-
-        <div class="hero-content">
-
-            <span class="hero-tag">
-                🎓 آموزش آنلاین و کاربردی
-            </span>
-
-            <h1>
-                مهارت امروز،
-                <br>
-                <span>آینده بهتر فردا.</span>
-            </h1>
-
-            <p>
-                در اکادمی آرتیک، آموزش کمپیوتر، زبان، علوم، هنر، تجوید و فن بیان
-                با رویکرد کاربردی و هدفمند ارائه می‌شود.
-            </p>
-
-            <div class="hero-actions">
-
-                <a
-                    class="btn btn-primary"
-                    href="#courses">
-                    مشاهده دوره‌ها
-                </a>
-
-                <a
-                    class="btn btn-outline"
-                    href="#contact">
-                    ثبت‌نام و ارتباط
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
+<div class="container">
+<div class="hero-content">
+<div class="hero-copy">
+<span class="hero-tag">🎓 آموزش آنلاین و کاربردی</span>
+<h1>مهارت امروز،<br><span>آینده بهتر فردا.</span></h1>
+<p>در اکادمی آرتیک، آموزش کمپیوتر، زبان، علوم، هنر، تجوید و فن بیان با رویکرد کاربردی، منظم و هدفمند ارائه می‌شود.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#courses">مشاهده دوره‌ها</a>
+<a class="btn btn-outline" href="#contact">ثبت‌نام و ارتباط</a>
+</div>
+</div>
+<div class="hero-visual" aria-label="ArtTech Academy">
+<div class="hero-orbit"></div>
+<div class="hero-glass">
+<div class="hero-logo-big"><img src="logo.png" alt="لوگوی اکادمی آرتیک"></div>
+<h3>اکادمی آرتیک</h3>
+<p>ArtTech Academy · Online Learning</p>
+<div class="hero-stats">
+<div class="hero-stat"><strong>Online</strong><span>آموزش از هرجا</span></div>
+<div class="hero-stat"><strong>Practical</strong><span>تمرین عملی</span></div>
+<div class="hero-stat"><strong>24/7</strong><span>دسترسی آسان</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 
@@ -2432,6 +2656,18 @@ discountOverlay.addEventListener(
 
 </script>
 
+
+<a class="arttech-float" href="https://wa.me/93702601027" target="_blank" rel="noopener" aria-label="تماس از طریق واتساپ" title="تماس از طریق واتساپ">◔</a>
+<script>
+(function(){
+ const els=document.querySelectorAll('section:not(.news-section),.course-card,.advantage,.contact-card,.info-box,.about-text,.free-box,.cta-box');
+ els.forEach(el=>el.classList.add('reveal-ready'));
+ const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target)}}),{threshold:.08});
+ els.forEach(el=>io.observe(el));
+ const mb=document.getElementById('menuBtn'),nav=document.getElementById('navLinks');
+ if(mb&&nav) mb.addEventListener('click',()=>mb.setAttribute('aria-expanded',nav.classList.contains('active')?'false':'true'));
+})();
+</script>
 </body>
 </html>
 ```
