@@ -2668,6 +2668,48 @@ discountOverlay.addEventListener(
  if(mb&&nav) mb.addEventListener('click',()=>mb.setAttribute('aria-expanded',nav.classList.contains('active')?'false':'true'));
 })();
 </script>
+
+<!-- ArtTech Academy Visitor Analytics -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function () {
+  const SUPABASE_URL = 'https://uunddbcsiiwwygrjztpz.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_0Gi1xF7kJNQ4GWLrKCXgLQ_sdfqjrwV';
+
+  try {
+    const { createClient } = window.supabase;
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    let visitorId = localStorage.getItem('arttech_visitor_id');
+    if (!visitorId) {
+      visitorId = (crypto.randomUUID ? crypto.randomUUID() :
+        'v-' + Date.now() + '-' + Math.random().toString(36).slice(2));
+      localStorage.setItem('arttech_visitor_id', visitorId);
+    }
+
+    const ua = navigator.userAgent;
+    const device = /Mobi|Android|iPhone|iPad|iPod/i.test(ua) ? 'موبایل' : 'کمپیوتر';
+    let browser = 'دیگر';
+    if (/Edg\//i.test(ua)) browser = 'Edge';
+    else if (/Chrome\//i.test(ua)) browser = 'Chrome';
+    else if (/Firefox\//i.test(ua)) browser = 'Firefox';
+    else if (/Safari\//i.test(ua)) browser = 'Safari';
+
+    supabase.from('visits').insert({
+      visitor_id: visitorId,
+      page: location.pathname || '/',
+      device: device,
+      browser: browser,
+      referrer: document.referrer || null
+    }).then(function (result) {
+      if (result.error) console.warn('ArtTech analytics:', result.error.message);
+    });
+  } catch (e) {
+    console.warn('ArtTech analytics unavailable:', e);
+  }
+})();
+</script>
+
 </body>
 </html>
 ```
